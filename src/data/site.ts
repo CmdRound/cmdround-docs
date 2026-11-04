@@ -183,5 +183,6 @@ export const siteConfig: SiteConfig = {
     { label: "Get started", href: "/quickstart" },
     { label: "Support", href: "https://github.com/CmdRound/cmdround-docs/issues/new" },
     { label: "GitHub", href: "https://github.com/CmdRound/cmdround-docs" },
+    { label: "Changelog", href: "/changelog" },
   ],
 };
