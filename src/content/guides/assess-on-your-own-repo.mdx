@@ -1,0 +1,162 @@
+---
+title: Assess candidates on your own repo
+description: Test candidates on a repository that closely resembles the job they'll do at your organisation.
+---
+
+Custom repositories have always been how engineers were tested before agentic
+development. CmdRound takes note of this and has this exact feature. You can test
+candidates on a repository that closely resembles the day-to-day job they'll be
+responsible for at your organisation.
+
+## How a task works
+
+A task is a ticket on your own repository plus the checks that score it. A task contains
+four parts. Let's take a look.
+
+<Tip>
+  If writing each task by hand looks like a long process, you'll be happy to know we have
+  "Write it with your coding agent". It gives you a prompt for an agent in your codebase,
+  and the agent gives back a JSON block we use to fill in every part.
+  [See how it works](#write-a-task-with-your-coding-agent).
+</Tip>
+
+![The "Write it with your coding agent" box with the "Copy prompt" and "Paste answer" buttons](/images/agent-box.png)
+
+Back to the four parts of a custom task in your repository:
+
+- The ticket. This is what the agent your candidate drives sees. It goes into the repo as
+  `TICKET.md`.
+- The note for the candidate. The twist here is that only the candidate sees this. It
+  tests how well a candidate can read an instruction and pass it to the agent. If they
+  copied and pasted this note directly to the agent, you will be notified in the replay
+  section of that assessment.
+- Checks. Each check is a command. If it exits with `0`, it passed. A check works with
+  the ticket we spoke of earlier to make sure the work listed there is done.
+- Hidden test files. These files aren't added until the round ends, and the candidate
+  never sees them. The checks run them.
+
+## Add your repo
+
+Click "Your repos" at the top of your dashboard, or visit
+[cmdround.com/dashboard/repos](https://cmdround.com/dashboard/repos). Paste the link to
+the repository and click "Add repo". The repository has to be public, and you can add up
+to three.
+
+![Your repos page with no repos yet](/images/add-repo.png)
+
+After you click "Add repo", a setup process starts. The repo is set up once, so every
+candidate gets the same copy in their own isolated workspace. The setup typically takes a
+minute or two.
+
+![A repo waiting to set up](/images/repo-waiting.png)
+
+![A repo setting up](/images/repo-setting-up.png)
+
+When the setup is done, its status changes to "Ready" and you can add your tasks, by
+hand or, as we'll see soon, with an agent.
+
+![A repo marked Ready](/images/repo-ready.png)
+
+## Write a task with your coding agent
+
+We advise that you have an agent that lives in your codebase write the task. We provide
+it with enough context about what CmdRound is and how our tasks, assessments and checks
+work. This helps it write the best possible and fairest assessment for your candidates.
+
+To get started, open the repo you just added and click "New task". Then click
+"Copy prompt" in the "Write it with your coding agent" section.
+
+![The New task page with the "Write it with your coding agent" section at the top](/images/new-task.png)
+
+Paste the prompt into any agent that has full context of how your codebase works. Your
+agent will ask you questions like these:
+
+![A coding agent asking about the company, role, seniority and skills before it writes the task](/images/agent-questions.png)
+
+After your detailed answers, the agent writes all parts of the task: the ticket, the
+note, the checks and the hidden test files. Then it runs every check three times: on the
+untouched repo, on a correct solution and on a solution that ignores the note. Only after
+every check behaves as it should does it give you its answer, with the whole task as a
+JSON block at the end.
+
+Copy the agent's whole answer, click "Paste answer", paste it into the box and click
+"Fill the form". We read the JSON and fill in the form on your behalf. Read through each
+field to be sure the agent did not stray from your goal.
+
+![The paste box open under "Write it with your coding agent"](/images/paste-box.png)
+
+![The task form filled in from the agent's answer](/images/task-form-filled.png)
+
+CmdRound only accepts the agent's work if the runs prove the task works and can't be
+gamed by a curious candidate. If any check fails, we tell you which check failed and
+leave the form empty.
+
+## Save the task
+
+When the checks have passed and the task meets your goal, click "Save task". It will
+then appear in your tasks when you create a new assessment.
+
+## Try a dry run
+
+To check the integrity of your task, we offer a free dry run. Click "Start the dry run".
+In the background, we give an agent the ticket and let it work alone, with no human in
+the middle. It takes a few minutes, depending on the size of the ticket and the
+repository.
+
+At the end of the dry run, a good task shows "Agent alone failed": the agent could not
+fix the bug or build the feature alone, and it needs a human in the middle. This means
+the task is good for assessing your candidates.
+
+![A dry run verdict on a saved task](/images/dry-run-verdict.png)
+
+## Put the task on an assessment
+
+To put your task to work, click "New assessment" on your dashboard. Make an assessment
+the same way as in [Send your first assessment](/quickstart#steps). On the tasks step,
+your new task is listed in the "Your tasks" section. Pick it and carry on as usual.
+
+![The tasks step with your own task under "Your tasks"](/images/builder-your-tasks.png)
+
+## Read the result
+
+When candidates submit their work, you are notified, and this is the part where it all
+comes together. The scorecard in the replay, which you can open right from the mail or
+from each candidate's card on your dashboard, answers four questions:
+
+1. Do they verify the AI's work?
+2. Does the work hold up?
+3. How do they recover when it breaks?
+4. How do they direct the agent?
+
+Each one gets Standout, Strong, Mixed or Flag.
+
+<Frame caption="Sample round">
+  ![The scorecard at the top of a replay](/images/sample-scorecard.png)
+</Frame>
+
+Here is a sample replay. It shows key moments, the candidate's prompts and the
+permissions they gave the agent.
+
+<Frame caption="Sample round">
+  ![Key moments in a replay](/images/sample-moments.png)
+</Frame>
+
+<Frame caption="Sample round">
+  ![How the round ended](/images/sample-how-it-ended.png)
+</Frame>
+
+## Troubleshooting
+
+### The repo setup failed
+
+If the setup of your repository doesn't work, you see what your repo printed last in the
+setup process. Fix the command, then click "Set it up again" to run it again.
+
+![A failed repo setup with its last output and the "Set it up again" button](/images/repo-failed.png)
+
+### The agent's answer was refused
+
+A task can also be refused when a check fails. Copy the error message, give it back to
+your agent and paste its new answer.
+
+![A pasted answer refused because a check failed](/images/paste-refused.png)

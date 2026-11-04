@@ -176,13 +176,12 @@ const templateSiteConfig: SiteConfig = {
 // Managed by Thally Cloud onboarding.
 export const siteConfig: SiteConfig = {
   ...templateSiteConfig,
-  name: "CmdRound Docs",
+  name: "CmdRound",
   description: "A platform for hiring managers and recruiters to assess candidates on their agentic development skills. This documentation will help you get up and ready with CmdRound; create your first assessment and use custom repos for assessment.",
   repoUrl: "https://github.com/CmdRound/cmdround-docs",
   links: [
     { label: "Get started", href: "/quickstart" },
     { label: "Support", href: "https://github.com/CmdRound/cmdround-docs/issues/new" },
     { label: "GitHub", href: "https://github.com/CmdRound/cmdround-docs" },
-    { label: "Changelog", href: "/changelog" },
   ],
 };
